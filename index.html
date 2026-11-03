@@ -371,16 +371,22 @@ button,a{-webkit-tap-highlight-color:transparent}
 </div>
 <div class="cond" data-cond="mapFit">
 <div style="position: relative; border: 1px solid rgba(216,180,106,0.55); border-radius: 10px; overflow: hidden; background: #F2F2F2">
-<div class="cond off" data-cond="mapArex"><img src="assets/venue-map-arex.webp" alt="코엑스마곡 약도: 공항철도 마곡나루역 6번 출구에서 코엑스마곡 컨벤션센터로 이동" style="display: block; width: 100%; height: auto"></div>
-<div class="cond" data-cond="map9"><img src="assets/venue-map.webp" alt="코엑스마곡 약도: 9호선 마곡나루역 2번 출구에서 마곡광장 지하도를 지나 코엑스마곡 컨벤션센터로 이동" style="display: block; width: 100%; height: auto"></div>
+<div class="cond" data-cond="map9"><img src="assets/venue-map.webp?v=2" alt="코엑스마곡 약도: 9호선 마곡나루역 2번 출구에서 마곡광장 지하도를 지나 코엑스마곡 컨벤션센터로 이동" style="display: block; width: 100%; height: auto"></div>
+<div class="cond off" data-cond="mapArex"><img src="assets/venue-map-arex.webp?v=2" alt="코엑스마곡 약도: 공항철도 마곡나루역 6번 출구에서 코엑스마곡 컨벤션센터로 이동" style="display: block; width: 100%; height: auto"></div>
+<div class="cond off" data-cond="map5"><img src="assets/venue-map-line5.webp" alt="코엑스마곡 약도: 5호선 마곡역 1번 출구에서 지하도로 코엑스마곡 컨벤션센터까지 이동 (도보 약 10~15분)" style="display: block; width: 100%; height: auto"></div>
+<div class="cond off" data-cond="mapBus"><img src="assets/venue-map-bus.webp" alt="코엑스마곡 약도: 마곡나루역 정류장(16396) 등 주변 버스 정류장 위치" style="display: block; width: 100%; height: auto"></div>
+<div class="cond off" data-cond="mapCar"><img src="assets/venue-map-car.webp" alt="코엑스마곡 약도: 마곡중앙5로의 코엑스마곡 주차 GATE 위치" style="display: block; width: 100%; height: auto"></div>
 <button type="button" data-action="toggleZoom" style="position: absolute; left: 8px; top: 8px; height: 30px; padding: 0 12px; border: 1px solid #D8B46A; border-radius: 999px; background: rgba(8,8,10,0.85); color: #F3D896; font-size: 12px; display: flex; align-items: center; gap: 5px"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>크게 보기</button>
 </div>
 </div>
 <div class="cond off" data-cond="mapZoom">
 <div style="position: relative; border: 1px solid rgba(216,180,106,0.55); border-radius: 10px; overflow: hidden; background: #F2F2F2">
 <div style="height: 380px; overflow: auto; direction: rtl">
-<div class="cond off" data-cond="mapArex"><img src="assets/venue-map-arex.webp" alt="코엑스마곡 약도 확대(공항철도)" style="display: block; width: 744px; max-width: none; height: 380px"></div>
-<div class="cond" data-cond="map9"><img src="assets/venue-map.webp" alt="코엑스마곡 약도 확대(9호선)" style="display: block; width: 744px; max-width: none; height: 380px"></div>
+<div class="cond" data-cond="map9"><img src="assets/venue-map.webp?v=2" alt="코엑스마곡 약도 확대(9호선)" style="display: block; width: 706px; max-width: none; height: 380px"></div>
+<div class="cond off" data-cond="mapArex"><img src="assets/venue-map-arex.webp?v=2" alt="코엑스마곡 약도 확대(공항철도)" style="display: block; width: 706px; max-width: none; height: 380px"></div>
+<div class="cond off" data-cond="map5"><img src="assets/venue-map-line5.webp" alt="코엑스마곡 약도 확대(5호선)" style="display: block; width: 706px; max-width: none; height: 380px"></div>
+<div class="cond off" data-cond="mapBus"><img src="assets/venue-map-bus.webp" alt="코엑스마곡 약도 확대(버스)" style="display: block; width: 706px; max-width: none; height: 380px"></div>
+<div class="cond off" data-cond="mapCar"><img src="assets/venue-map-car.webp" alt="코엑스마곡 약도 확대(승용차)" style="display: block; width: 706px; max-width: none; height: 380px"></div>
 </div>
 <button type="button" data-action="toggleZoom" style="position: absolute; left: 8px; top: 8px; height: 30px; padding: 0 12px; border: 1px solid #D8B46A; border-radius: 999px; background: rgba(8,8,10,0.85); color: #F3D896; font-size: 12px; display: flex; align-items: center; gap: 5px"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="M14 10l7-7"></path><path d="M3 21l7-7"></path></svg>원래대로</button>
 </div>
@@ -621,7 +627,7 @@ button,a{-webkit-tap-highlight-color:transparent}
     setCond('isSubway', sub); setCond('isBus', st.mode === 'bus'); setCond('isCar', st.mode === 'car');
     setCond('show0', sub && st.station === 0); setCond('show1', sub && st.station === 1); setCond('show2', sub && st.station === 2);
     setCond('mapFit', !st.zoom); setCond('mapZoom', st.zoom);
-    var arex = sub && st.station === 1; setCond('mapArex', arex); setCond('map9', !arex);
+    setCond('map9', sub && st.station === 0); setCond('mapArex', sub && st.station === 1); setCond('map5', sub && st.station === 2); setCond('mapBus', st.mode === 'bus'); setCond('mapCar', st.mode === 'car');
     document.querySelectorAll('[data-tab]').forEach(function(b){ var on = b.getAttribute('data-tab') === st.mode; b.style.color = on ? '#F3D896' : '#8D887F'; b.setAttribute('aria-pressed', on); });
     document.querySelectorAll('[data-st]').forEach(function(b){ var on = +b.getAttribute('data-st') === st.station; b.style.background = on ? '#E9CD8C' : 'transparent'; b.style.color = on ? '#1A1418' : '#D9D3C6'; b.setAttribute('aria-pressed', on); var a = b.querySelector('.st-arrow'); if (a) a.style.opacity = on ? 1 : 0; });
   }
