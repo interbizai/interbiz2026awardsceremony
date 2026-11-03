@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>귀빈 초대장 링크 만들기</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#08080A">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<style>
+@font-face{font-family:'LG Smart';src:url('../assets/LGSmartH.woff2') format('woff2');font-weight:400;font-display:swap}
+:root{--bg:#08080A;--panel:#121015;--line:rgba(216,180,106,0.45);--gold:#E9CD8C;--gold2:#D8B46A;--text:#F4EEE2;--sub:#A9A39A;--field:#1A171E}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'LG Smart',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;word-break:keep-all;line-height:1.6}
+.wrap{max-width:560px;margin:0 auto;padding:36px 16px 64px}
+header{text-align:center;margin-bottom:28px}
+header img{width:84px;height:auto;display:block;margin:0 auto 18px}
+h1{margin:0;font-size:24px;font-weight:400;color:var(--gold)}
+header p{margin:10px 0 0;font-size:14px;color:var(--sub)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin-top:16px}
+.card h2{margin:0 0 14px;font-size:16px;font-weight:400;color:var(--gold)}
+label{display:block;font-size:13px;color:var(--sub);margin:0 0 6px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,textarea{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--field);border:1px solid rgba(216,180,106,0.3);border-radius:10px;padding:11px 12px;outline:none}
+input:focus,textarea:focus{border-color:var(--gold2)}
+textarea{min-height:120px;resize:vertical;line-height:1.7}
+.preview{margin:16px 0 0;padding:14px;border-radius:10px;background:rgba(216,180,106,0.08);text-align:center;font-size:17px;color:var(--gold);min-height:54px}
+.preview small{display:block;font-size:12px;color:var(--sub);margin-top:2px}
+.link{margin-top:10px;font-size:12.5px;color:var(--sub);word-break:break-all;text-align:center}
+.btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+button,.btn{font:inherit;font-size:14px;height:44px;border-radius:10px;border:1px solid rgba(216,180,106,0.6);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;padding:0 8px;text-align:center;line-height:1.2}
+button.primary{background:linear-gradient(180deg,#F3D896,#C9A25A);color:#140F0A;border-color:transparent}
+button:disabled,.btn.off{opacity:.4;pointer-events:none}
+.hint{font-size:12.5px;color:var(--sub);margin:8px 0 0}
+.list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.item{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:10px 12px;border:1px solid rgba(216,180,106,0.25);border-radius:10px}
+.item .nm{font-size:15px;color:var(--text)}
+.item button{height:36px;font-size:13px;padding:0 10px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);max-width:88vw;padding:12px 18px;border-radius:999px;background:rgba(20,18,24,0.96);border:1px solid var(--gold2);color:var(--text);font-size:14px;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:10}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:420px){.btns{grid-template-columns:1fr 1fr}.btns .wide{grid-column:1 / -1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../assets/logo-reverse.png" alt="interbiz since 1989">
+    <h1>귀빈 초대장 링크 만들기</h1>
+    <p>받는 분의 이름과 직책을 넣으면 그분 이름이 들어간 초대장 링크가 만들어져요.</p>
+  </header>
+
+  <section class="card" aria-labelledby="one">
+    <h2 id="one">한 분씩 만들기</h2>
+    <div class="row">
+      <div><label for="nm">이름</label><input id="nm" autocomplete="off" placeholder="예: 이상곤"></div>
+      <div><label for="tt">직책 (선택)</label><input id="tt" autocomplete="off" placeholder="예: 팀장, 선임"></div>
+    </div>
+    <div class="preview" id="pv">이름을 입력해 주세요</div>
+    <div class="link" id="lk"></div>
+    <div class="btns">
+      <button type="button" class="primary" id="cpLink" disabled>링크 복사</button>
+      <button type="button" id="cpMsg" disabled>메시지 복사</button>
+      <a class="btn off wide" id="open" target="_blank" rel="noopener">초대장 미리보기</a>
+    </div>
+    <p class="hint">'메시지 복사'는 인사말과 일시·장소, 링크가 함께 담긴 문구예요. 카카오톡이나 메일에 그대로 붙여넣으면 돼요.</p>
+  </section>
+
+  <section class="card" aria-labelledby="many">
+    <h2 id="many">여러 분 한 번에 만들기</h2>
+    <label for="bulk">한 줄에 한 분씩 '이름 직책' 순서로 적어 주세요.</label>
+    <textarea id="bulk" placeholder="이상곤 팀장&#10;김지은 선임&#10;박민수 상무"></textarea>
+    <div class="btns" style="grid-template-columns:1fr 1fr">
+      <button type="button" class="primary" id="mk">링크 만들기</button>
+      <button type="button" id="cpAll" disabled>전체 복사 (엑셀용)</button>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var BASE = 'https://interbizai.github.io/interbiz2026awardsceremony/vip/';
+  function enc(s){ var b = new TextEncoder().encode(s), bin = ''; for (var i = 0; i < b.length; i++) bin += String.fromCharCode(b[i]); return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function clean(t){ return (t || '').trim().replace(/\s*님$/, ''); }
+  function label(n, t){ t = clean(t); return t ? n + ' ' + t + '님' : n + ' 님'; }
+  function link(n, t){ return BASE + '?to=' + enc(n + '|' + clean(t)); }
+  function message(n, t){
+    var l = label(n, t);
+    return '[2026 인터비즈시스템 연말시상식 초대장]\n\n' + l + ', 안녕하십니까.\n올 한 해 보내 주신 관심과 성원에 깊이 감사드리며,\n2026 인터비즈시스템 연말시상식에 정중히 초대합니다.\n\n■ 일시: 2026년 12월 9일(수) 오후 3시 30분\n■ 장소: 코엑스마곡 그래머시 르웨스트 B홀 (4층)\n\n▶ 초대장 보기\n' + link(n, t);
+  }
+  var toast = document.getElementById('toast'), tm;
+  function say(m){ toast.textContent = m; toast.classList.add('show'); clearTimeout(tm); tm = setTimeout(function(){ toast.classList.remove('show'); }, 2200); }
+  function copy(text, msg){
+    function ok(){ say(msg); }
+    function legacy(){ var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) { say('복사하지 못했어요. 길게 눌러 직접 복사해 주세요.'); } document.body.removeChild(ta); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, legacy); else legacy();
+  }
+
+  // single
+  var nm = document.getElementById('nm'), tt = document.getElementById('tt'), pv = document.getElementById('pv'), lk = document.getElementById('lk');
+  var cpLink = document.getElementById('cpLink'), cpMsg = document.getElementById('cpMsg'), open = document.getElementById('open');
+  function update(){
+    var n = nm.value.trim(), t = tt.value;
+    var has = !!n;
+    cpLink.disabled = cpMsg.disabled = !has; open.classList.toggle('off', !has);
+    if (!has) { pv.textContent = '이름을 입력해 주세요'; lk.textContent = ''; open.removeAttribute('href'); return; }
+    pv.innerHTML = ''; pv.appendChild(document.createTextNode(label(n, t) + '을 정중히 초대합니다'));
+    var sm = document.createElement('small'); sm.textContent = '초대장에 이렇게 보여요'; pv.appendChild(sm);
+    var u = link(n, t); lk.textContent = u; open.href = u;
+  }
+  nm.addEventListener('input', update); tt.addEventListener('input', update);
+  cpLink.addEventListener('click', function(){ copy(link(nm.value.trim(), tt.value), label(nm.value.trim(), tt.value) + ' 링크를 복사했어요.'); });
+  cpMsg.addEventListener('click', function(){ copy(message(nm.value.trim(), tt.value), '메시지를 복사했어요.'); });
+
+  // bulk
+  var bulk = document.getElementById('bulk'), list = document.getElementById('list'), cpAll = document.getElementById('cpAll'), rows = [];
+  document.getElementById('mk').addEventListener('click', function(){
+    rows = bulk.value.split(/\r?\n/).map(function(l){ return l.trim(); }).filter(Boolean).map(function(l){
+      var p = l.split(/\s+/); return { n: p[0], t: p.slice(1).join(' ') };
+    });
+    list.innerHTML = '';
+    rows.forEach(function(r){
+      var it = document.createElement('div'); it.className = 'item';
+      var s = document.createElement('span'); s.className = 'nm'; s.textContent = label(r.n, r.t);
+      var b1 = document.createElement('button'); b1.type = 'button'; b1.textContent = '링크';
+      b1.addEventListener('click', function(){ copy(link(r.n, r.t), label(r.n, r.t) + ' 링크를 복사했어요.'); });
+      var b2 = document.createElement('button'); b2.type = 'button'; b2.textContent = '메시지';
+      b2.addEventListener('click', function(){ copy(message(r.n, r.t), label(r.n, r.t) + ' 메시지를 복사했어요.'); });
+      it.appendChild(s); it.appendChild(b1); it.appendChild(b2); list.appendChild(it);
+    });
+    cpAll.disabled = !rows.length;
+    if (!rows.length) say('이름을 한 줄에 한 분씩 적어 주세요.');
+  });
+  cpAll.addEventListener('click', function(){
+    var text = '이름\t직책\t초대장 링크\n' + rows.map(function(r){ return r.n + '\t' + clean(r.t) + '\t' + link(r.n, r.t); }).join('\n');
+    copy(text, rows.length + '명의 링크를 복사했어요. 엑셀에 붙여넣으면 표로 들어가요.');
+  });
+})();
+</script>
+</body>
+</html>

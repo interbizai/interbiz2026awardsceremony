@@ -5,6 +5,13 @@
 - 주소: https://interbizai.github.io/interbiz2026awardsceremony/
 - 구성: `index.html` 한 장 + `assets/` (서체, 로고, 마스코트, 약도, 미리보기 이미지)
 
+## 귀빈용 초대장 (받는 분 이름 표시)
+- 초대장: https://interbizai.github.io/interbiz2026awardsceremony/vip/ (이름 없이 열면 '소중한 분'으로 표시)
+- 링크 만들기: https://interbizai.github.io/interbiz2026awardsceremony/vip/make.html
+  - 이름·직책을 넣으면 `vip/?to=...` 개인 링크가 만들어지고, 초대장에 "OOO 팀장님을 정중히 초대합니다"로 표시됩니다.
+  - 여러 명은 한 줄에 '이름 직책'으로 적어 한 번에 만들 수 있고, 엑셀용으로 전체 복사할 수 있습니다.
+- 임직원용과 달리 Got Talent 모집 안내와 공유 버튼이 없습니다.
+
 ## 수정 후 반영
 `main` 브랜치에 커밋·푸시하면 GitHub Pages가 1~2분 안에 자동으로 다시 배포합니다.
 (설정 위치: 저장소 › Settings › Pages › Source: Deploy from a branch, `main` / `(root)`)
